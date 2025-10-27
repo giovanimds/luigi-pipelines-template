@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "setuptools-scm>=8.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pipelines-planejamento"
+version = "0.1.0"
+description = "Pipelines de dados orquestrados com Luigi e Scrapy."
+requires-python = ">=3.12"
+readme = "README.md"
+authors = [
+    {name = "Giovani S.", email = "giovanimoresco@gmail.com"},
+]
+license = {file = "LICENSE"}
+keywords = ["luigi", "scrapy", "fastapi", "etl", "data-pipeline"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Topic :: Scientific/Engineering :: Data Analysis",
+]
+
+# Defina as dependências principais que o projeto precisa para funcionar
+dependencies = [
+    "luigi", # Versão estável do Luigi
+    "Scrapy", # Versão estável do Scrapy
+    "APScheduler", # Usado no seu scheduler customizado
+    "fastapi", # Para a sua API
+    "uvicorn[standard]", # Servidor para o FastAPI
+    "PyYAML", # Para ler o schedules.yaml
+    "pandas", # Essencial para processamento de dados
+    "pydantic",
+    "selenium",
+    "python-dotenv",
+    "openpyxl",
+    "numpy",
+    "watchdog>=6.0.0",
+    "sqlalchemy>=2.0.44",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "flake8",
+    "black",
+    "pytest-cov"
+]
+
+[tool.setuptools.packages.find]
+# Indica que o pacote Python real está no subdiretório 'src'
+where = ["src"]
