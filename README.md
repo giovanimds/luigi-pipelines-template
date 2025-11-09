@@ -121,3 +121,16 @@ python scripts/cli/generate.py --list
 ✅ **Redução de erros**: Templates testados reduzem erros manuais  
 ✅ **Onboarding**: Facilita integração de novos desenvolvedores  
 ✅ **Documentação**: Componentes gerados já incluem comentários e documentação básica
+
+### 📖 Documentação Completa
+
+Para exemplos detalhados, casos de uso avançados e guia completo, consulte:
+
+**[📚 Guia Completo de Cookiecutter](docs/COOKIECUTTER_GUIDE.md)**
+
+Este guia inclui:
+- Exemplos práticos passo a passo
+- Como personalizar templates
+- Boas práticas de organização
+- Troubleshooting comum
+- FAQ
