@@ -39,6 +39,7 @@ dependencies = [
     "numpy",
     "watchdog>=6.0.0",
     "sqlalchemy>=2.0.44",
+    "cookiecutter>=2.6.0", # Template engine for generating project components
 ]
 
 [project.optional-dependencies]
