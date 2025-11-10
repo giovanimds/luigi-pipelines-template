@@ -1,0 +1,26 @@
+{
+  "project_name": "My Data Pipeline",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "project_short_description": "Luigi-based data pipeline for ETL operations",
+  "author_name": "Your Name",
+  "author_email": "your.email@example.com",
+  "python_version": "3.12",
+  "version": "0.1.0",
+  "open_source_license": ["MIT", "Apache-2.0", "BSD-3-Clause", "GPL-3.0", "Proprietary"],
+  "include_scrapy": "y",
+  "include_fastapi": "y",
+  "include_scheduler": "y",
+  "__prompts__": {
+    "project_name": "Enter your project name",
+    "project_slug": "Python package name (auto-generated from project name)",
+    "project_short_description": "Brief description of your pipeline",
+    "author_name": "Your full name",
+    "author_email": "Your email address",
+    "python_version": "Python version to use",
+    "version": "Initial version number",
+    "open_source_license": "Choose a license",
+    "include_scrapy": "Include Scrapy for web scraping? (y/n)",
+    "include_fastapi": "Include FastAPI for REST API? (y/n)",
+    "include_scheduler": "Include custom scheduler? (y/n)"
+  }
+}
