@@ -45,7 +45,7 @@ async def root():
     </head>
     <body>
         <div class="container">
-            <h1>🚀 Luigi Portal ITAU</h1>
+            <h1>🚀 Luigi Portal</h1>
             <form onsubmit="executarTask(event)">
                 <select id="task" required>
                     <option>Selecione uma task...</option>
