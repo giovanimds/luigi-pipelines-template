@@ -14,7 +14,7 @@ import pytest
 project_root = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(project_root))
 
-from pipelines_planejamento.tasks import ExampleTask
+from {{ cookiecutter.project_slug }}.tasks import ExampleTask
 
 
 class TestExtractDataTask:

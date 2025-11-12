@@ -58,19 +58,19 @@ data/
 ```bash
 # Always use virtual environment
 conda run -n luigi luigi --module ...
-uv run python -m pipelines_planejamento.tasks.ExampleTask
+uv run python -m <project_slug>.tasks.ExampleTask
 ```
 
 ### Running Tasks
 ```bash
 # With central scheduler (production)
-luigi --module pipelines_planejamento.tasks ExtractEntregasItcpfTask --scheduler-url http://localhost:8082
+luigi --module <project_slug>.tasks YourTaskName --scheduler-url http://localhost:8082
 
 # Debug mode (local scheduler)
 luigi --module ... --local-scheduler
 
 # Custom scheduler (background service)
-uv run python -m pipelines_planejamento.scheduler
+uv run python -m <project_slug>.scheduler
 ```
 
 ### Scheduler Management
@@ -154,9 +154,9 @@ output_prefix = luigi.Parameter(default="DATA_TYPE")
 
 ## Key Files to Reference
 
-- `blueprint.md`: ALWAYS document changes and trace project history in this file
 - `luigi.cfg`: Luigi configuration
 - `settings.py`: Path and Scrapy configurations
 - `schedules.yaml`: Task scheduling definitions
 - `tasks/core/base_task.py`: Event handlers and logging
 - `tasks/core/extract_base.py`: Base extraction logic
+- `README.md`: Project documentation and usage instructions
