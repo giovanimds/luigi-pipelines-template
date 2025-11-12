@@ -3,7 +3,7 @@ from datetime import datetime
 
 import luigi
 from luigi import LocalTarget
-from pipelines_planejamento.settings import PROCESSED_DATA_PATH
+from {{ cookiecutter.project_slug }}.settings import PROCESSED_DATA_PATH
 
 
 class ExampleTask(luigi.Task):
