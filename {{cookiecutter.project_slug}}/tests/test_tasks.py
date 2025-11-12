@@ -3,16 +3,10 @@ Unit tests for Luigi tasks
 
 Run with: pytest tests/
 """
-import sys
 from datetime import date
-from pathlib import Path
 
 import pandas as pd
 import pytest
-
-# Add project root to path
-project_root = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(project_root))
 
 from {{ cookiecutter.project_slug }}.tasks import ExampleTask
 
