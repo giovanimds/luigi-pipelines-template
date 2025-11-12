@@ -6,7 +6,7 @@ Imports base_task to ensure event handlers are registered before any task execut
 
 # Import base_task first to register Luigi event handlers globally
 try:
-    from pipelines_planejamento.tasks.core import base_task
+    from {{ cookiecutter.project_slug }}.tasks.core import base_task
 except Exception:
     import logging
 
