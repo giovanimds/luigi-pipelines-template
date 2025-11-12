@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "setuptools-scm>=8.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "{{ cookiecutter.project_slug }}"
+version = "{{ cookiecutter.version }}"
+description = "{{ cookiecutter.project_short_description }}"
+requires-python = ">={{ cookiecutter.python_version }}"
+readme = "README.md"
+authors = [
+    {name = "{{ cookiecutter.author_name }}", email = "{{ cookiecutter.author_email }}"},
+]
+license = {file = "LICENSE"}
+keywords = ["luigi", "scrapy", "fastapi", "etl", "data-pipeline"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Topic :: Scientific/Engineering :: Data Analysis",
+]
+
+# Defina as dependências principais que o projeto precisa para funcionar
+dependencies = [
+    "luigi",  # Luigi workflow orchestration
+    {% if cookiecutter.include_scrapy == "y" %}"Scrapy",  # Web scraping framework
+    "selenium",  # Browser automation for scraping
+    {% endif %}{% if cookiecutter.include_scheduler == "y" %}"APScheduler",  # Task scheduling
+    "watchdog>=6.0.0",  # File system events monitoring
+    {% endif %}{% if cookiecutter.include_fastapi == "y" %}"fastapi",  # REST API framework
+    "uvicorn[standard]",  # ASGI server for FastAPI
+    "pydantic",  # Data validation
+    {% endif %}"PyYAML",  # YAML configuration files
+    "pandas",  # Data processing and analysis
+    "python-dotenv",  # Environment variables management
+    "openpyxl",  # Excel file support
+    "numpy",  # Numerical computing
+    "sqlalchemy>=2.0.44",  # Database toolkit
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "flake8",
+    "black",
+    "pytest-cov"
+]
+
+[tool.setuptools.packages.find]
+# Indica que o pacote Python real está no subdiretório 'src'
+where = ["src"]

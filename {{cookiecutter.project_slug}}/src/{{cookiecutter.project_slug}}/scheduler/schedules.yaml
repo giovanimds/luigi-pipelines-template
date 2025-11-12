@@ -1,0 +1,34 @@
+schedules:
+  # Propostas Hourly Report - combines Selenium + Sheets data every hour from 9 to 18
+  # Luigi automatically executes dependencies: RunHoraTask + ExtractPropostasRecoveryTask
+  - name: example_schedule
+    module: {{ cookiecutter.project_slug }}.tasks
+    task: ExampleTask
+    cron: "15 9-18 * * *" # every hour at minute 15 from 09:00 through 18:00 daily
+    date_mode: today
+    params:
+      hora_atual: __current_hour__
+
+  - name: run_proposta_spider
+    module: {{ cookiecutter.project_slug }}.tasks
+    task: RunPropostaSpiderTask
+    cron: "15 10 * * *" # Rodamos nossa spider as 10:15 daily
+    date_mode: today
+    params:
+      hora_atual: __current_hour__
+
+file_watchers:
+  # Exemplo: Processa arquivos CSV quando criados ou modificados
+  - name: example_watchdog
+    path: "G://Meu Drive//consulta//in"
+    patterns: ["*.csv", "*.xlsx"]
+    events: ["created", "modified"]
+    task:
+      module: {{ cookiecutter.project_slug }}.tasks
+      task_class: ExampleWatchdogTask
+    params:
+      source_path: "{file_path}"
+      file_name: "{file_name}"
+      file_extension: "{file_ext}"
+    cooldown: 5
+    recursive: false
