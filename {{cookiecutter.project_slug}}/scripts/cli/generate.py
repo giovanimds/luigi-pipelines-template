@@ -24,7 +24,7 @@ def generate_task(output_dir=None):
     template_path = str(TEMPLATES_DIR / "luigi-task")
 
     if output_dir is None:
-        output_dir = str(PROJECT_ROOT / "src" / "pipelines_planejamento" / "tasks")
+        output_dir = str(PROJECT_ROOT / "src" / "{{ cookiecutter.project_slug }}" / "tasks")
 
     print("\n🚀 Generating Luigi Task...")
     print(f"Template: {template_path}")
@@ -39,7 +39,7 @@ def generate_task(output_dir=None):
         print("\n📝 Next steps:")
         print("1. Review and customize the generated task")
         print("2. Import the task in your tasks/__init__.py")
-        print("3. Test the task with: luigi --module pipelines_planejamento.tasks YourTask --local-scheduler")
+        print("3. Test the task with: luigi --module {{ cookiecutter.project_slug }}.tasks YourTask --local-scheduler")
         return result
     except Exception as e:
         print(f"\n❌ Error generating task: {e}")
@@ -51,7 +51,7 @@ def generate_spider(output_dir=None):
     template_path = str(TEMPLATES_DIR / "scrapy-spider")
 
     if output_dir is None:
-        output_dir = str(PROJECT_ROOT / "src" / "pipelines_planejamento" / "spiders")
+        output_dir = str(PROJECT_ROOT / "src" / "{{ cookiecutter.project_slug }}" / "spiders")
 
     print("\n🚀 Generating Scrapy Spider...")
     print(f"Template: {template_path}")
