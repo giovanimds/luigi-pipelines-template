@@ -37,7 +37,7 @@ def main():
     if include_scrapy != "y":
         remove_dir(src_dir / "spiders")
         remove_dir(src_dir / "scrapers")
-        remove_file("scrapy.cfg")
+        remove_file("scrapy.cfg.example")
         remove_file(src_dir / "items.py")
         remove_file(src_dir / "middlewares.py")
         remove_file(src_dir / "pipelines.py")

@@ -56,8 +56,8 @@ Documentação completa: https://docs.scrapy.org/en/latest/topics/settings.html
 
 BOT_NAME = "luigi_scrapy"
 
-SPIDER_MODULES = ["pipelines_planejamento.spiders"]
-NEWSPIDER_MODULE = "pipelines_planejamento.spiders"
+SPIDER_MODULES = ["{{ cookiecutter.project_slug }}.spiders"]
+NEWSPIDER_MODULE = "{{ cookiecutter.project_slug }}.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent

@@ -33,7 +33,7 @@ async def root():
     <!DOCTYPE html>
     <html>
     <head>
-        <title>Luigi Portal</title>
+        <title>{{ cookiecutter.project_name }} - Luigi Portal</title>
         <style>
             body { font-family: Arial; margin: 20px; background: #f5f5f5; }
             .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
@@ -45,16 +45,16 @@ async def root():
     </head>
     <body>
         <div class="container">
-            <h1>🚀 Luigi Portal</h1>
+            <h1>🚀 {{ cookiecutter.project_name }} - Luigi Portal</h1>
             <form onsubmit="executarTask(event)">
                 <select id="task" required>
-                    <option>Selecione uma task...</option>
-                    <option value="task_name">Task Name</option>
+                    <option>Select a task...</option>
+                    <option value="example_task">Example Task</option>
                 </select>
                 <input type="date" id="date" required>
-                <button type="submit">▶️ Executar</button>
+                <button type="submit">▶️ Execute</button>
             </form>
-            <h3>Execuções Recentes</h3>
+            <h3>Recent Executions</h3>
             <div id="history"></div>
         </div>
         <script>

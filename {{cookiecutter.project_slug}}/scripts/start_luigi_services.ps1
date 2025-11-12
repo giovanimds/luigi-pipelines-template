@@ -32,7 +32,7 @@ if (!(Test-Path $VenvPython)) {
 Write-Log "Ensuring custom Python package is installed in editable mode..."
 $installCmd = "$VenvPip install -e ."
 Start-Process -FilePath 'cmd.exe' -ArgumentList '/c', $installCmd -WorkingDirectory $ProjectPath -WindowStyle Hidden -Wait
-Write-Log "Package 'pipelines_planejamento' installed/updated."
+Write-Log "Package '{{ cookiecutter.project_slug }}' installed/updated."
 
 # --------------------------------------------------------------------------
 # CONFIGURAÇÃO DE LOGS E ESTADO (INALTERADA)
@@ -100,7 +100,7 @@ $timestamp = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 "[$timestamp] Starting Luigi scheduler daemon..." | Out-File -FilePath $schedulerLog -Encoding UTF8 -Append
 
 # Define o módulo Python a ser executado
-$schedulerModule = "pipelines_planejamento.scheduler"
+$schedulerModule = "{{ cookiecutter.project_slug }}.scheduler"
 
 Write-Log "Running Luigi cron scheduler with uv run (logging to $schedulerLog)..."
 

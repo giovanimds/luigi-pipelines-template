@@ -7,8 +7,9 @@ import csv
 from datetime import datetime
 
 from itemadapter import ItemAdapter
+from scrapy.exceptions import DropItem
 
-from pipelines_planejamento.settings import OUTPUT_DATA_PATH
+from {{ cookiecutter.project_slug }}.settings import OUTPUT_DATA_PATH
 
 
 class DataValidationPipeline:

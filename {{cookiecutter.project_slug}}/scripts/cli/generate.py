@@ -24,7 +24,7 @@ def generate_task(output_dir=None):
     template_path = str(TEMPLATES_DIR / "luigi-task")
 
     if output_dir is None:
-        output_dir = str(PROJECT_ROOT / "src" / "{{ cookiecutter.project_slug }}" / "tasks")
+        output_dir = str(PROJECT_ROOT / "src" / "{{ "{{ cookiecutter.project_slug }}" }}" / "tasks")
 
     print("\n🚀 Generating Luigi Task...")
     print(f"Template: {template_path}")
@@ -51,7 +51,7 @@ def generate_spider(output_dir=None):
     template_path = str(TEMPLATES_DIR / "scrapy-spider")
 
     if output_dir is None:
-        output_dir = str(PROJECT_ROOT / "src" / "{{ cookiecutter.project_slug }}" / "spiders")
+        output_dir = str(PROJECT_ROOT / "src" / "{{ "{{ cookiecutter.project_slug }}" }}" / "spiders")
 
     print("\n🚀 Generating Scrapy Spider...")
     print(f"Template: {template_path}")

@@ -1,3 +1,3 @@
-from .utils import compute_file_hash, resolve_mes_atual_worksheet
+from .utils import compute_file_hash
 
-__all__ = ["resolve_mes_atual_worksheet", "compute_file_hash"]
+__all__ = ["compute_file_hash"]
