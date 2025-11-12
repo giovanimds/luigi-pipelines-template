@@ -58,19 +58,19 @@ data/
 ```bash
 # Always use virtual environment
 conda run -n luigi luigi --module ...
-uv run python -m <project_slug>.tasks.ExampleTask
+uv run python -m your_project.tasks.ExampleTask
 ```
 
 ### Running Tasks
 ```bash
 # With central scheduler (production)
-luigi --module <project_slug>.tasks YourTaskName --scheduler-url http://localhost:8082
+luigi --module your_project.tasks YourTaskName --scheduler-url http://localhost:8082
 
 # Debug mode (local scheduler)
 luigi --module ... --local-scheduler
 
 # Custom scheduler (background service)
-uv run python -m <project_slug>.scheduler
+uv run python -m your_project.scheduler
 ```
 
 ### Scheduler Management
