@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 import luigi
 
-from pipelines_planejamento.tasks import ExampleTask
+from {{ cookiecutter.project_slug }}.tasks import ExampleTask
 
 app = FastAPI(title="Luigi Portal")
 
@@ -33,7 +33,7 @@ async def root():
     <!DOCTYPE html>
     <html>
     <head>
-        <title>Luigi Portal ITAU</title>
+        <title>Luigi Portal</title>
         <style>
             body { font-family: Arial; margin: 20px; background: #f5f5f5; }
             .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
@@ -49,12 +49,7 @@ async def root():
             <form onsubmit="executarTask(event)">
                 <select id="task" required>
                     <option>Selecione uma task...</option>
-                    <option value="entregas_itcpf">Extrair ENTREGAS_ITCPF</option>
-                    <option value="entregas_pesados">Extrair ENTREGAS_PESADOS</option>
-                    <option value="apreensoes">Extrair APREENSOES</option>
-                    <option value="refins">Extrair REFINS</option>
-                    <option value="inconsistencias">Extrair INCONSISTENCIAS</option>
-                    <option value="tratar_itc">Tratar ENTREGAS_ITC</option>
+                    <option value="task_name">Task Name</option>
                 </select>
                 <input type="date" id="date" required>
                 <button type="submit">▶️ Executar</button>
@@ -105,13 +100,7 @@ async def execute_task(req: ExecuteRequest, background_tasks: BackgroundTasks):
                 return {"status": "error", "message": "Task não encontrada"}
 
             date = datetime.fromisoformat(req.date).date()
-
-            if req.task == "tratar_itc":
-                data_ini = req.data_ini
-                data_fim = req.data_fim
-                task = task_class(date=date, data_ini=data_ini, data_fim=data_fim)
-            else:
-                task = task_class(date=date)
+            task = task_class(date=date)
 
             result = luigi.build([task], local_scheduler=True)
 
