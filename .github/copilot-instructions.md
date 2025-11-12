@@ -154,7 +154,7 @@ output_prefix = luigi.Parameter(default="DATA_TYPE")
 
 ## Key Files to Reference
 
-In generated projects:
+In generated projects (within `{{cookiecutter.project_slug}}/`):
 
 - `luigi.cfg`: Luigi configuration
 - `settings.py`: Path and Scrapy configurations
