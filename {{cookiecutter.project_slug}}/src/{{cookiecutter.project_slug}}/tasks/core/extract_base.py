@@ -5,16 +5,11 @@ from datetime import date as dt_date
 from datetime import datetime
 from pathlib import Path
 
-import gspread
 import pandas as pd
 
 import luigi
 
-sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
-from sheetsapi import SheetsClient
-
-from pipelines_planejamento.settings import OUTPUT_DATA_PATH
-from pipelines_planejamento.utils import resolve_mes_atual_worksheet
+from {{ cookiecutter.project_slug }}.settings import OUTPUT_DATA_PATH
 
 logger = logging.getLogger("luigi-interface")
 
@@ -29,12 +24,6 @@ class BaseExtractTask(luigi.Task, ABC):
     """
 
     date = luigi.DateParameter(default=datetime.now().date())
-    worksheet_name = luigi.Parameter(default="")
-    sheet_id = luigi.Parameter(default="")
-    output_prefix = luigi.Parameter(default="")
-    sheetname_literal = luigi.BoolParameter(default=False)
-
-    sheets_client: SheetsClient = SheetsClient()
 
     def requires(self):
         """Define task dependencies - none for extract tasks"""
@@ -66,46 +55,7 @@ class BaseExtractTask(luigi.Task, ABC):
     def _extract_data(self):
         """Common extract logic using SheetsClient"""
         logger.info("Reading data from Google Sheets")
-        try:
-            # Determine effective worksheet name: handle MES_ATUAL variants except when fixed (INCONSISTENCIAS)
-            effective_ws = self.worksheet_name
-            if not self.sheetname_literal and (
-                not str(self.worksheet_name).strip()
-                or str(self.worksheet_name).upper().startswith("MES_ATUAL")
-            ):
-                try:
-                    # Convert Luigi DateParameter to a concrete date for type checkers
-                    effective_date = (
-                        self.date
-                        if isinstance(self.date, dt_date)
-                        else datetime.now().date()
-                    )
-                    effective_ws = resolve_mes_atual_worksheet(
-                        self.sheets_client, str(self.sheet_id), effective_date
-                    )
-                except Exception as e:
-                    logger.warning(
-                        f"Could not auto-resolve MES_ATUAL worksheet, falling back to provided name '{self.worksheet_name}': {e}"
-                    )
-
-            data = self.sheets_client.get_sheet_data(
-                sheet_id=str(self.sheet_id), worksheet_name=str(effective_ws)
-            )
-            logger.debug(
-                f"Raw data extracted: {len(data) if hasattr(data, '__len__') else 'unknown'}"
-            )
-            return data
-        except gspread.exceptions.SpreadsheetNotFound:
-            logger.error(f"Spreadsheet not found: {self.sheet_id}")
-            raise
-        except gspread.exceptions.WorksheetNotFound:
-            logger.error(
-                f"Worksheet not found: {self.worksheet_name} in sheet {self.sheet_id}"
-            )
-            raise
-        except Exception as e:
-            logger.error(f"Error extracting data: {e}")
-            raise
+       
 
     @abstractmethod
     def _transform_data(self, data) -> pd.DataFrame:
