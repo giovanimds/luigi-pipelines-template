@@ -110,11 +110,11 @@ DEFAULT_REQUEST_HEADERS = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    "pipelines_planejamento.pipelines.DataValidationPipeline": 100,
-    "pipelines_planejamento.pipelines.ValueNormalizationPipeline": 200,
-    "pipelines_planejamento.pipelines.DuplicatesPipeline": 300,
-    "pipelines_planejamento.pipelines.CsvExportPipeline": 400,
-    # "pipelines_planejamento.pipelines.JsonExportPipeline": 500,  # Opcional se usar FEEDS
+    "{{ cookiecutter.project_slug }}.pipelines.DataValidationPipeline": 100,
+    "{{ cookiecutter.project_slug }}.pipelines.ValueNormalizationPipeline": 200,
+    "{{ cookiecutter.project_slug }}.pipelines.DuplicatesPipeline": 300,
+    "{{ cookiecutter.project_slug }}.pipelines.CsvExportPipeline": 400,
+    # "{{ cookiecutter.project_slug }}.pipelines.JsonExportPipeline": 500,  # Opcional se usar FEEDS
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
